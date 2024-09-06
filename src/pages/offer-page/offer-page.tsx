@@ -1,7 +1,7 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import clsx from 'clsx';
 import type { OfferShort } from '@customTypes/offer.ts';
-import { capitalizeFirstLetter } from '@functions';
+import { capitalizeFirstLetter } from '@utils';
 import { Layout } from '@components/layout';
 import { PremiumMark } from '@components/premium-mark';
 import { Bookmark } from '@components/bookmark';

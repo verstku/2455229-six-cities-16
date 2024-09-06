@@ -1,7 +1,7 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import type { OfferShort } from '@customTypes/offer';
 import type { Size } from '@customTypes/size';
-import { capitalizeFirstLetter, getImageSize } from '@functions';
+import { capitalizeFirstLetter, getImageSize } from '@utils';
 import { PremiumMark } from '@components/premium-mark';
 import { Bookmark } from '@components/bookmark';
 import { Rating } from '@components/rating';

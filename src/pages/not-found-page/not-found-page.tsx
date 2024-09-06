@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import clsx from 'clsx';
 import style from './not-found-page.module.css';
 

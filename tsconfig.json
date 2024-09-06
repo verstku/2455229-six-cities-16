@@ -26,7 +26,7 @@
       "@customTypes/*": ["./src/types/*"],
       "@mocks/*": ["./src/mocks/*"],
       "@constants": ["./src/constants.ts"],
-      "@functions": ["./src/functions.ts"],
+      "@utils": ["./src/utils.ts"],
     }
   },
   "include": ["src", "vite.config.ts"],

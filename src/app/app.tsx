@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import { MainPage } from '@pages/main-page';
 import { OfferPage } from '@pages/offer-page';
 import { FavoritesPage } from '@pages/favorites-page';

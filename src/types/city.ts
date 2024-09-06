@@ -1,12 +1,7 @@
 import type { Location } from './location';
+import { CITIES } from '@constants';
 
-export type CityName =
-  | 'Paris'
-  | 'Cologne'
-  | 'Brussels'
-  | 'Amsterdam'
-  | 'Hamburg'
-  | 'Dusseldorf';
+export type CityName = (typeof CITIES)[number];
 
 export type City = {
   name: CityName;

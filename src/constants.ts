@@ -1,14 +1,13 @@
-import type { CityName } from '@customTypes/city.ts';
 import type { AllSizesOfAllImages } from '@customTypes/size.ts';
 
-export const CITIES: CityName[] = [
+export const CITIES = [
   'Paris',
   'Cologne',
   'Brussels',
   'Amsterdam',
   'Hamburg',
   'Dusseldorf',
-];
+] as const;
 
 export const IMAGES_SIZES: AllSizesOfAllImages = {
   offer: {
@@ -25,7 +24,7 @@ export const IMAGES_SIZES: AllSizesOfAllImages = {
   },
 };
 
-export const REVIEW_FORM_STARS = [
+export const FORM_RATING_STARS = [
   { value: 5, title: 'perfect' },
   { value: 4, title: 'good' },
   { value: 3, title: 'not bad' },

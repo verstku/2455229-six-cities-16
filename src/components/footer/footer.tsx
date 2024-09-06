@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import { Logo } from '@components/logo';
 
 function Footer(): JSX.Element {

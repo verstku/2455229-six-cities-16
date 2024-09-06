@@ -1,5 +1,5 @@
-import { JSX } from 'react';
-import { getRatingWidth } from '@functions';
+import type { JSX } from 'react';
+import { getRatingWidth } from '@utils';
 
 type PrefixForRating = 'place-card' | 'offer' | 'reviews';
 

@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import { REVIEWS } from '@mocks/reviews';
 import type { Review } from '@customTypes/review';
 import { ReviewItem } from '@components/review-item';

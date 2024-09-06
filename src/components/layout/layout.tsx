@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import type { HeaderProps } from '@components/header';
 import type { HTMLAttributes } from 'react';
 import { Header } from '@components/header';

@@ -1,7 +1,7 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import type { CityName } from '@customTypes/city';
 import { CITIES } from '@constants';
-import { randomInteger } from '@functions';
+import { randomInteger } from '@utils';
 import { Layout } from '@components/layout';
 import { LoginForm } from '@components/login-form';
 import { LocationItem } from '@components/location-item';

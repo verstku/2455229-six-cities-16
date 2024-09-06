@@ -1,5 +1,5 @@
-import React, { JSX } from 'react';
-import { REVIEW_FORM_STARS } from '@constants';
+import type { JSX } from 'react';
+import { FormRating } from '@components/form-rating';
 
 function ReviewForm(): JSX.Element {
   return (
@@ -7,28 +7,7 @@ function ReviewForm(): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
-      <div className="reviews__rating-form form__rating">
-        {REVIEW_FORM_STARS.map(({ title, value }) => (
-          <React.Fragment key={value}>
-            <input
-              className="form__rating-input visually-hidden"
-              name="rating"
-              defaultValue={value}
-              id={`${value}-stars`}
-              type="radio"
-            />
-            <label
-              htmlFor={`${value}-stars`}
-              className="reviews__rating-label form__rating-label"
-              title={title}
-            >
-              <svg className="form__star-image" width={37} height={33}>
-                <use xlinkHref="#icon-star" />
-              </svg>
-            </label>
-          </React.Fragment>
-        ))}
-      </div>
+      <FormRating className="reviews__rating-form" />
       <textarea
         className="reviews__textarea form__textarea"
         id="review"

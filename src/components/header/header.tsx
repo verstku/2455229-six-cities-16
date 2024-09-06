@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import { Logo } from '@components/logo';
 import { HeaderNav } from '@components/header-nav';
 

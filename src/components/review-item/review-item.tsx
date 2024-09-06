@@ -1,6 +1,6 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 import type { Review } from '@customTypes/review.ts';
-import { formatDate } from '@functions';
+import { formatDate } from '@utils';
 import { Rating } from '@components/rating';
 
 type ReviewItemProps = {

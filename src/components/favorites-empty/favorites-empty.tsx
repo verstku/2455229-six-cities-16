@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 
 function FavoritesEmpty(): JSX.Element {
   return (

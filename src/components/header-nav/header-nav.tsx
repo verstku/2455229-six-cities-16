@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import type { JSX } from 'react';
 
 function HeaderNav(): JSX.Element {
   return (
