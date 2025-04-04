@@ -1,11 +1,13 @@
 import type { JSX } from 'react';
-import { REVIEWS } from '@mocks/reviews';
 import type { Review } from '@customTypes/review';
 import { ReviewItem } from '@components/review-item';
 import { ReviewForm } from '@components/review-form';
 
-function Reviews(): JSX.Element {
-  const reviews: Review[] = REVIEWS;
+type ReviewsProps = {
+  reviews: Review[];
+};
+
+function Reviews({ reviews }: ReviewsProps): JSX.Element {
   const reviewsCount: number = reviews.length;
 
   return (

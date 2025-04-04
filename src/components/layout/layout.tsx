@@ -1,27 +1,48 @@
 import type { JSX } from 'react';
-import type { HeaderProps } from '@components/header';
-import type { HTMLAttributes } from 'react';
+import type { RoutesUnion } from '@customTypes/routes-union.ts';
+import type { MetaTagsProps } from '@components/meta-tags/meta-tags.tsx';
+import { useState } from 'react';
+import { useLocation, useMatch, Outlet } from 'react-router-dom';
+import { MetaTags } from '@components/meta-tags';
 import { Header } from '@components/header';
 import { Footer } from '@components/footer';
+import { getLayoutDataByRoute } from './layout-helpers.ts';
+import { AppRoute } from '@constants';
 
-type LayoutProps = HeaderProps &
-  Pick<HTMLAttributes<HTMLDivElement>, 'children' | 'className'> & {
-    hasFooter?: boolean;
-  };
+function Layout(): JSX.Element {
+  const { pathname } = useLocation();
+  const [favoritesCount, setFavoritesCount] = useState(0);
+  const [dynamicPageMetaTags, setDynamicPageMetaTags] =
+    useState<MetaTagsProps['dynamicPageMetaTags']>(undefined);
+  const isFavoritesRoute = pathname === AppRoute.Favorites;
+  const isDynamicRouteMatch = Boolean(useMatch(AppRoute.Offer));
+  const hasFavorites = favoritesCount > 0;
 
-function Layout({
-  children,
-  className,
-  isActive,
-  noHeaderNav,
-  hasFooter = false,
-}: LayoutProps): JSX.Element {
+  const { className, isActiveLogo, noHeaderNav, hasFooter } =
+    getLayoutDataByRoute(
+      pathname as RoutesUnion,
+      hasFavorites,
+      isDynamicRouteMatch,
+    );
+
   return (
-    <div className={className}>
-      <Header isActive={isActive} noHeaderNav={noHeaderNav} />
-      {children}
-      {hasFooter && <Footer />}
-    </div>
+    <>
+      <MetaTags pathname={pathname} dynamicPageMetaTags={dynamicPageMetaTags} />
+      <div className={className}>
+        <Header
+          favoritesCount={favoritesCount}
+          isActiveLogo={isActiveLogo}
+          noHeaderNav={noHeaderNav}
+        />
+        <Outlet
+          context={{
+            ...(isFavoritesRoute && { setFavoritesCount }),
+            ...(isDynamicRouteMatch && { setDynamicPageMetaTags }),
+          }}
+        />
+        {hasFooter && <Footer />}
+      </div>
+    </>
   );
 }
 
