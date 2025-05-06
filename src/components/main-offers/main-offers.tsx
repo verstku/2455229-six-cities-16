@@ -1,16 +1,22 @@
 import type { JSX } from 'react';
-import { OFFERS } from '@mocks/offers';
 import { OfferCard } from '@components/offer-card';
+import { CityName } from '@customTypes/city.ts';
+import { OfferShort } from '@customTypes/offer.ts';
 
-function MainOffers(): JSX.Element {
-  const countOffers: number = OFFERS.length;
+type MainOffersProps = {
+  offers: OfferShort[];
+  cityName?: CityName;
+};
+
+function MainOffers({ offers, cityName }: MainOffersProps): JSX.Element {
+  const countOffers: number = offers.length;
 
   return (
     <>
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">
-          {countOffers} places to stay in Amsterdam
+          {countOffers} places to stay in {cityName || 'all six cities'}
         </b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by</span>
@@ -36,7 +42,7 @@ function MainOffers(): JSX.Element {
           </ul>
         </form>
         <div className="cities__places-list places__list tabs__content">
-          {OFFERS.map((offer) => (
+          {offers.map((offer) => (
             <OfferCard
               key={offer.id}
               offer={offer}

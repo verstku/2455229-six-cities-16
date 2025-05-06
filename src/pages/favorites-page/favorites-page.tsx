@@ -1,21 +1,30 @@
 import type { JSX } from 'react';
-import clsx from 'clsx';
-import { Layout } from '@components/layout';
+import { useEffect } from 'react';
 import { FavoritesEmpty } from '@components/favorites-empty';
-import { THREE_OFFERS } from '@mocks/offers';
 import { FavoritesOffers } from '@components/favorites-offers';
+import { useOutletContext } from 'react-router-dom';
+import { OfferShort } from '@customTypes/offer.ts';
 
-function FavoritesPage(): JSX.Element {
-  const isEmpty = THREE_OFFERS.length === 0;
-  const renderPage = isEmpty ? <FavoritesEmpty /> : <FavoritesOffers />;
+type OutletContext = {
+  setFavoritesCount: (value: number) => void;
+};
 
-  return (
-    <Layout
-      hasFooter
-      className={clsx('page', isEmpty && 'page--favorites-empty')}
-    >
-      {renderPage}
-    </Layout>
+type FavoritesPageProps = {
+  favorites: OfferShort[];
+};
+
+function FavoritesPage({ favorites }: FavoritesPageProps): JSX.Element {
+  const favoritesCount = favorites.length;
+  const isEmpty = favoritesCount === 0;
+  console.log('FavoritesPage', favoritesCount);
+
+  const { setFavoritesCount } = useOutletContext<OutletContext>();
+  useEffect(() => setFavoritesCount(favoritesCount), [favoritesCount]);
+
+  return isEmpty ? (
+    <FavoritesEmpty />
+  ) : (
+    <FavoritesOffers favorites={favorites} />
   );
 }
 

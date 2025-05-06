@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import type { OfferShort } from '@customTypes/offer';
 import type { Size } from '@customTypes/size';
+import { Link } from 'react-router-dom';
 import { capitalizeFirstLetter, getImageSize } from '@utils';
 import { PremiumMark } from '@components/premium-mark';
 import { Bookmark } from '@components/bookmark';
@@ -15,20 +16,28 @@ type OfferShortProps = {
 };
 
 function OfferCard({ offer, size, prefix }: OfferShortProps): JSX.Element {
-  const { title, type, price, previewImage, isPremium, isFavorite, rating } =
-    offer;
+  const {
+    id,
+    title,
+    type,
+    price,
+    previewImage,
+    isPremium,
+    isFavorite,
+    rating,
+  } = offer;
   return (
     <article className={`${prefix}__card place-card`}>
       {isPremium && <PremiumMark prefix="place-card" />}
       <div className={`${prefix}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={`/offer/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
             {...getImageSize(size, 'offer')}
             alt={title}
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -40,7 +49,7 @@ function OfferCard({ offer, size, prefix }: OfferShortProps): JSX.Element {
         </div>
         <Rating rating={rating} prefix="place-card" />
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{capitalizeFirstLetter(type)}</p>
       </div>

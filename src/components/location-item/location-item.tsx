@@ -1,28 +1,32 @@
 import type { JSX } from 'react';
-import type { CityName } from '@customTypes/city';
-
+import type { CityName, CityId } from '@customTypes/city';
+import { Link, useLocation } from 'react-router-dom';
 type LocationItemTags = keyof Pick<JSX.IntrinsicElements, 'li' | 'div'>;
 
 type LocationItemProps = {
-  city: CityName;
+  cityId: CityId;
+  cityName: CityName;
   containerTag: LocationItemTags;
-  linkClassName: string;
 };
 
 function LocationItem({
-  city,
+  cityId,
+  cityName,
   containerTag: TagName,
-  linkClassName,
 }: LocationItemProps): JSX.Element {
-  // const Container: keyof JSX.IntrinsicElements = containerTag;
+  const { pathname } = useLocation();
+  const linkClass = 'locations__item-link tabs__item';
 
-  return (
-    <TagName className="locations__item">
-      <a className={linkClassName} href="#">
-        <span>{city}</span>
-      </a>
-    </TagName>
-  );
+  const content =
+    pathname === `/${cityId}` ? (
+      <span className={`${linkClass} tabs__item--active`}>{cityName}</span>
+    ) : (
+      <Link to={`/${cityId}`} className={linkClass}>
+        <span>{cityName}</span>
+      </Link>
+    );
+
+  return <TagName className="locations__item">{content}</TagName>;
 }
 
 export { LocationItem };

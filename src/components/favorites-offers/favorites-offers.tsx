@@ -1,14 +1,17 @@
 import type { JSX } from 'react';
 import { OfferCard } from '@components/offer-card';
-import { THREE_OFFERS } from '@mocks/offers.ts';
 import type { OfferShort } from '@customTypes/offer.ts';
 import type { CityName } from '@customTypes/city.ts';
 
 type GroupedOffersType = Partial<Record<CityName, OfferShort[]>>;
 
-function FavoritesOffers(): JSX.Element {
+type FavoritesOffersProps = {
+  favorites: OfferShort[];
+};
+
+function FavoritesOffers({ favorites }: FavoritesOffersProps): JSX.Element {
   const groupedOffers: GroupedOffersType = Object.groupBy(
-    THREE_OFFERS,
+    favorites,
     (offer: OfferShort) => offer.city.name,
   );
 
